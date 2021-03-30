@@ -74,15 +74,16 @@ for file_extension in file_extensions:
     print("Actual Total {}".format(total))
 
 # Turns list into dataframe
-file_line_data = {'Name': names, 'Line Count': counts, "Type": types}
+line_count_label = 'Line Count'
+file_line_data = {'Name': names, line_count_label: counts, "Type": types}
 line_count_df = pd.DataFrame(data=file_line_data)
-line_count_df = line_count_df.sort_values(by=['Line Count'])
+line_count_df = line_count_df.sort_values(by=[line_count_label])
 print(line_count_df)
 
 # Bar chart of different files and thier line count
-fig = px.bar(line_count_df, x='Name', y='Line Count', color="Type")
+fig = px.bar(line_count_df, x='Name', y=line_count_label, color="Type")
 fig.show()
 
 # Pie chart of different file types and thier sum line count
-fig = px.pie(line_count_df, values='Line Count', names='Type',)
+fig = px.pie(line_count_df, values=line_count_label, names='Type',)
 fig.show()
